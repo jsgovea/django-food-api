@@ -8,8 +8,9 @@ https://docs.djangoproject.com/en/3.0/howto/deployment/wsgi/
 """
 
 import os
-# from whitenoise import WhiteNoise
-from whitenoise.django import DjangoWhiteNoise
+from whitenoise import WhiteNoise
+# from whitenoise.django import DjangoWhiteNoise
+from food import MyWSGIApp
 
 from django.core.wsgi import get_wsgi_application
 
