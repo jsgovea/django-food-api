@@ -25,7 +25,7 @@ SECRET_KEY = 'tpeas-o%=q2^t8r4iy6f^6f2m@@yn+sq6+0wi@kr+h&ypw8tee'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
