@@ -1,0 +1,122 @@
+{% extends 'index.html' %}
+ {% load static %}
+{% block title %} Cuenta {%endblock%}
+{% block content %}
+
+<style>
+  .upload-btn-wrapper {
+    position: relative;
+    overflow: hidden;
+    display: inline-block;
+  }
+
+  .btn {
+    border: 2px solid gray;
+    color: gray;
+    background-color: white;
+    padding: 8px 20px;
+    border-radius: 8px;
+    font-size: 20px;
+    font-weight: bold;
+  }
+
+  .upload-btn-wrapper input[type="file"] {
+    font-size: 50px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    opacity: 0;
+  }
+</style>
+
+<div id="page-vcard" class="content">
+  <p
+    id="account_notification"
+    class="toast toast-top toast-small bg-green-dark "
+  >
+    <i class="fa fa-check"></i>
+    Se guardaron los cambios
+  </p>
+  <p id="toast-3" class="toast toast-top toast-small bg-red-dark">
+    <i class="fa fa-times"></i>
+    Algo salio mal
+  </p>
+
+
+  <div class="vcard-header">
+    <img
+      data-src="/media/{{ restaurant.logo }}"
+      src="/media/{{ restaurant.logo }}"
+      class="preload-image"
+    />
+    <h1 class="large-text" id="restaurant_name">{{ restaurant.name }}</h1>
+    <em class="small-text color-gray-dark bottom-10"
+      >{{ restaurant.category }}</em
+    >
+    <div class="upload-btn-wrapper">
+      <button class="btn">Cambiar logo</button>
+      <input type="file" id="logo" name="logo" />
+    </div>
+  </div>
+  <div class="decoration opacity-50 bottom-0"></div>
+
+  <h1 class="vcard-title color-blue2-dark bold">Numero</h1>
+  <div class="vcard-field">
+    <strong>Telefono</strong>
+    <input
+      type="number"
+      placeholder=""
+      id="phone"
+      value="{{ restaurant.phone }}"
+    />
+    <i class="fa fa-phone"></i>
+  </div>
+
+  <h1 class="vcard-title color-blue2-dark bold">Ubicacion</h1>
+  <div class="vcard-field">
+    <strong>Direccion</strong>
+    <input
+      type="text"
+      id="address_account"
+      id="address"
+      value="{{ restaurant.address }}"
+    />
+    <i class="fa fa-map-marker"></i>
+  </div>
+  <div class="vcard-field">
+    <strong>Ciudad</strong>
+    <input
+      type="text"
+      id="city_account"
+      id="city"
+      value="{{ restaurant.city }}"
+    />
+    <i class="fa fa-map-marker"></i>
+  </div>
+
+  <h1 class="vcard-title color-blue2-dark bold">Contacto</h1>
+  <div class="vcard-field">
+    <strong>Correo</strong>
+    <input type="email" id="email" value="{{ request.user.email }}" />
+    <i class="fa fa-home"></i>
+  </div>
+  <div class="vcard-field">
+    <strong>Nombre</strong>
+    <input type="text" id="name" value="{{ restaurant.name }}" />
+    <i class="fa fa-user"></i>
+  </div>
+  <div class="vcard-field">
+    <strong>Categoria</strong>
+    <input type="text" id="category" value="{{ restaurant.category }}" />
+    <i class="fa fa-cutlery"></i>
+  </div>
+</div>
+<a
+  href="#"
+  id="save_account"
+  class="button bg-green1-dark button-full button-rounded button-xs uppercase ultrabold">
+  Guardar Cambios
+</a>
+
+<script src="{% static 'js/account/account.js' %}"></script>
+{% endblock %}

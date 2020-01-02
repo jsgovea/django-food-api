@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, viewport-fit=cover" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <title>FoodClub | Iniciar Sesión</title>
+  <!-- Don't forget to update PWA version (must be same) in pwa.js & manifest.json -->
+  <link rel="manifest" href="_manifest.json" data-pwa-version="set_by_pwa.js" />
+  <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}" />
+  <link rel="stylesheet" type="text/css" href="{% static 'fonts/css/all.min.css' %}" />
+  <link rel="stylesheet" type="text/css" href="{% static 'css/framework.css' %}" />
+  <link
+    href="https://fonts.googleapis.com/css?family=Poppins:400,500,600,700|Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i&display=swap"
+    rel="stylesheet" />
+</head>
+
+<body class="theme-light" data-highlight="blue2">
+  <div id="page-transitions">
+    <div class="page-hider"></div>
+
+    <div class="header header-logo-center header-round">
+      <a href="index.html" class="header-title">Inicio de Sesión</a>
+    </div>
+
+    <div class="page-content header-clear-larger">
+      <div class="page-login">
+        <img class="preload-image login-bg responsive-image bottom-0"
+          src="https://images.unsplash.com/photo-1518516278006-4aca92806257?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1553&q=80"
+          data-src="https://images.unsplash.com/photo-1518516278006-4aca92806257?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1553&q=80"
+          alt="img" />
+        <img class="preload-image login-image"
+          src="https://images.unsplash.com/photo-1489069313310-63735a4f3010?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1866&q=80"
+          data-src="https://images.unsplash.com/photo-1489069313310-63735a4f3010?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1866&q=80"
+          alt="img" />
+        <h3 class="ultrabold top-30 bottom-0">Iniciar Sesión</h3>
+        <p class="smaller-text bottom-15">
+          Nos alegra que regreses. Ingresa tus datos para continuar.
+        </p>
+        <form method="POST" action="{% url 'login' %}" id="loginForm">
+          {% csrf_token %}
+          <div class="page-login-field top-15">
+            <i class="fa fa-envelope"></i>
+            <input type="text" name="username" placeholder="Usuario" />
+            <em>(requerido)</em>
+          </div>
+          <div class="page-login-field bottom-20">
+            <i class="fa fa-lock"></i>
+            <input type="password" name="password" placeholder="Contraseña" />
+            <em>(requerido)</em>
+          </div>
+          <div class="page-login-links bottom-10">
+            <a class="create float-left" href="page-forgot.html"><i class="fa fa-eye"></i>Recuperar Contraseña</a>
+            <div class="clear"></div>
+          </div>
+          <a href="#" id="login"
+            class="button bg-green1-dark button-full button-rounded button-xs uppercase ultrabold">Acceder</a>
+        </form>
+      </div>
+      <div class="decoration decoration-margins"></div>
+    </div>
+  </div>
+  <script type="text/javascript" src="{% static 'js/jquery.js' %}"></script>
+  <script type="text/javascript" src="{% static 'js/plugins.js' %}"></script>
+  <script type="text/javascript" src="{% static 'js/custom.js' %}"></script>
+  <script src="{% static 'js/common.js' %}" charset="utf-8"></script>
+  <script src="{% static 'js/login/login.js' %}" charset="utf-8"></script>
+</body>
+
+</html>
