@@ -7,7 +7,6 @@ from . models import User, Restaurant, Driver, Customer, Meal, Order, OrderDetai
 from django.contrib.auth.decorators import login_required
 # Create your views here.
 
-
 def test_api(request):
     response_data = {}
     response_data['message'] = 'This is a test api'
@@ -45,6 +44,15 @@ def restaurant_account(request):
         'restaurant': restaurant,
     }
     return render(request, 'restaurant/account.html', context)
+
+@login_required(login_url='/login/')
+def restaurant_meals(request):
+    user = request.user
+    restaurant = Restaurant.objects.get(user=user)
+    context = {
+        'restaurant': restaurant
+    }
+    return render(request, 'restaurant/meals.html', context)
 
 @login_required(login_url='/login/')
 def update_account(request):
