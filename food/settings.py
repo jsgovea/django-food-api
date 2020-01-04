@@ -84,13 +84,23 @@ TEMPLATES = [
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+#     }
+# }
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'dc2l4ivfffeedj',
+        'USER': 'gxwgjvruwjujng',
+        'PASSWORD': 'b51060a367cba1680525bbd585b119b336e7e5c2796f9f1babb1838f6b0b1a6e',
+        'HOST': 'ec2-107-22-195-114.compute-1.amazonaws.com',
+        'PORT': 5432
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
