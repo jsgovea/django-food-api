@@ -10,7 +10,7 @@ gunicorn==20.0.4
 idna==2.8
 oauthlib==3.1.0
 Pillow==6.2.1
-psycopg2-binary==2.8.4
+psycopg2==2.7.7
 pyasn1==0.4.8
 PyJWT==1.7.1
 python-jose==3.1.0
@@ -25,4 +25,3 @@ social-auth-core==3.2.0
 sqlparse==0.3.0
 static3==0.7.0
 urllib3==1.25.7
-psycopg2==2.6.2
