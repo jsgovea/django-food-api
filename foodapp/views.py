@@ -35,7 +35,7 @@ def login_view(request):
 def home(request):
     return render(request, 'index.html')
 
-
+#Templates
 @login_required(login_url='/login/')
 def restaurant_account(request):
     user = request.user
@@ -49,11 +49,25 @@ def restaurant_account(request):
 def restaurant_meals(request):
     user = request.user
     restaurant = Restaurant.objects.get(user=user)
+    meals = Meal.objects.filter(restaurant = request.user.restaurant).order_by('id')
+
     context = {
-        'restaurant': restaurant
+        'restaurant': restaurant,
+        'meals': meals
     }
     return render(request, 'restaurant/meals.html', context)
 
+@login_required(login_url='/login/')
+def restaurant_add_view(request):
+    return render(request, 'restaurant/meals_add.html')
+
+@login_required(login_url='/login/')
+def restaurant_edit_view(request, meal_id):
+    response_data = {}
+    meals = Meal.objects.get(pk = meal_id)
+    return render(request, 'restaurant/meals_edit.html', { 'meals': meals })
+
+#Functions
 @login_required(login_url='/login/')
 def update_account(request):
     response_data = {}
@@ -78,6 +92,33 @@ def update_account(request):
         response_data['status'] = 'success'
         response_data['message'] = 'Success editing account'
     except Exception as e:
-        response_data['status'] = 'fail'
+        response_data['status'] = 'error'
+        response_data['message'] = 'Something went wrong'
+    return JsonResponse(response_data)
+
+@login_required(login_url='/login/')
+def restaurant_create_meal(request):
+    response_data = {}
+    user = request.user
+    restaurant = Restaurant.objects.get(user = user)
+    name = request.POST.get('name')
+    description = request.POST.get('description')
+    price = request.POST.get('price')
+    image = request.POST.get('meal_image')
+    category = request.POST.get('category')
+    print(image)
+    try:
+        meal = Meal.objects.create(
+            restaurant = restaurant,
+            name = name,
+            description = description,
+            price = price,
+            category = category,
+            image = image
+        )
+        response_data['status'] = 'success'
+        response_data['message'] = 'Meal created'
+    except Exception as e:
+        response_data['status'] = 'error'
         response_data['message'] = 'Something went wrong'
     return JsonResponse(response_data)

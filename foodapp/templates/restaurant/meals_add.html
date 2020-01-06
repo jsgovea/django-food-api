@@ -1,0 +1,99 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block title %} Menú {%endblock%}
+{% block content %}
+
+<style>
+  .upload-btn-wrapper {
+    position: relative;
+    overflow: hidden;
+    display: inline-block;
+  }
+
+  .btn {
+    border: 2px solid gray;
+    color: gray;
+    background-color: white;
+    padding: 8px 20px;
+    border-radius: 8px;
+    font-size: 20px;
+    font-weight: bold;
+  }
+
+  .upload-btn-wrapper input[type="file"] {
+    font-size: 50px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    opacity: 0;
+  }
+</style>
+
+<div id="page-vcard" class="content">
+  <p
+    id="account_notification"
+    class="toast toast-top toast-small bg-green-dark "
+  >
+    <i class="fa fa-check"></i>
+    Se guardaron los cambios
+  </p>
+  <p id="toast-3" class="toast toast-top toast-small bg-red-dark">
+    <i class="fa fa-times"></i>
+    Algo salio mal
+  </p>
+    <h4 class="uppercase bolder">Agrega un Platillo</h4>
+
+    <p class="bottom-15">
+      Rellena todos los campos para continuar
+    </p>
+
+    <div class="input-simple-1 has-icon input-green bottom-30">
+        <strong>Required Field</strong>
+
+        <em>Nombre</em>
+
+        <i class="fa fa-user"></i>
+        <input type="text" placeholder="Jonh Doe" id="name" autocomplete="off" />
+    </div>
+    <div class="input-simple-1 has-icon input-green bottom-30">
+        <strong>Required Field</strong>
+
+        <em>Descripcion</em>
+
+        <i class="fa fa-user"></i>
+        <input type="text" placeholder="Jonh Doe" id="description" autocomplete="off" />
+    </div>
+    <div class="input-simple-1 has-icon input-green bottom-30">
+        <strong>Required Field</strong>
+
+        <em>Precio</em>
+
+        <i class="fa fa-user"></i>
+        <input type="text" placeholder="Jonh Doe" id="price" autocomplete="off" />
+    </div>
+
+    <div class="input-simple-1 has-icon input-green bottom-30">
+        <strong>Required Field</strong>
+
+        <em>Categoria</em>
+
+        <i class="fa fa-user"></i>
+        <input type="text" placeholder="Jonh Doe" id="category" autocomplete="off" />
+    </div>
+
+    <div class="upload-btn-wrapper">
+      <button class="btn">Selecionar Imagen</button>
+      <input type="file" id="meal_image" name="meal_image" />
+    </div>
+    <div class="clear"></div>
+
+    <a
+      href="#"
+      id="add_meal"
+      class="button bg-green1-dark button-full button-rounded button-xs uppercase ultrabold">
+      Guardar Cambios
+    </a>
+</div>
+
+<script src="{% static 'js/restaurants/meals/add_meal.js' %}" charset="utf-8"></script>
+{% endblock %}

@@ -1,0 +1,35 @@
+{% extends 'index.html' %}
+ {% load static %}
+{% block title %} Menú {%endblock%}
+{% block content %}
+<div id="page-vcard" class="content">
+  <h1>Menu</h1>
+<a href="{% url 'restaurant_add_view' %}" class="button button-m shadow-small button-round-small bg-blue2-dark cc_pointer">Agregar Platillo</a>
+<table class="table-borders-light">
+<tbody>
+  <tr>
+<th class="bg-night-dark cc_cursor">Nombre</th>
+<th class="bg-night-dark">Descripcion</th>
+<th class="bg-night-dark">Precio</th>
+<th class="bg-night-dark">Categoria</th>
+<th class="bg-night-dark">Imagen</th>
+<th class="bg-night-dark">Accion</th>
+</tr>
+  {% for meal in meals %}
+  <tr>
+  <td class="bg-night-light">{{ meal.name }}</td>
+  <td class="bg-night-light">{{ meal.description }}</td>
+  <td class="bg-night-light">${{ meal.price }}</td>
+  <td class="bg-night-light">{{ meal.category }}</td>
+  <td class="bg-night-light" >
+    <img src="/media/{{ meal.image }}" style="display: initial !important;" width="50" height="50" alt="Imagen">
+  </td>
+  <td class="bg-night-light">
+    <a href="{% url 'restaurant_edit_view' meal.id %}" class="button button-xs shadow-small button-round-small bg-red1-light">Editar</a>
+  </td>
+  </tr>
+  {% endfor %}
+</tbody>
+</table>
+<div>
+{% endblock %}

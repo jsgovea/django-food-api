@@ -17,9 +17,13 @@ $("#save_account").on("click", function() {
     processData: false,
     contentType: false,
     data: formData,
-    error: function(xhr, ajaxOptions, thrownError) {}
+    error: function(xhr, ajaxOptions, thrownError) {
+      $("#toast-3").addClass("show-toast");
+      setTimeout(function() {
+        $("#toast-3").removeClass("show-toast");
+      }, 1500);
+    }
   }).done(function(res) {
-    console.log(res.status);
     if(res.status == 'success'){
       for (var value of formData.values()) {
         $('#restaurant_name').text(formData.get('name'))
