@@ -21,5 +21,6 @@ urlpatterns = [
     # Functions
     path('restaurant_create_meal/', views.restaurant_create_meal, name='restaurant_create_meal'),
     path('restaurant_edit_meal/<int:meal_id>/', views.restaurant_edit_view, name='restaurant_edit_view'),
+    path('save_edited_meal/', views.save_edited_meal, name='save_edited_meal'),
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

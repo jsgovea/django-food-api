@@ -6,7 +6,6 @@ $('#add_meal').on('click', function(){
   formData.append('description', $('#description').val())
   formData.append('price', $('#price').val())
   formData.append('category', $('#category').val())
-  // formData.append('meal_image', $('#meal_image').val())
   formData.append('meal_image', document.getElementById("meal_image").files[0].name)
   formData.append("csrfmiddlewaretoken", csrftoken)
 

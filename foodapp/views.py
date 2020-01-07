@@ -106,7 +106,6 @@ def restaurant_create_meal(request):
     price = request.POST.get('price')
     image = request.POST.get('meal_image')
     category = request.POST.get('category')
-    print(image)
     try:
         meal = Meal.objects.create(
             restaurant = restaurant,
@@ -118,6 +117,30 @@ def restaurant_create_meal(request):
         )
         response_data['status'] = 'success'
         response_data['message'] = 'Meal created'
+    except Exception as e:
+        response_data['status'] = 'error'
+        response_data['message'] = 'Something went wrong'
+    return JsonResponse(response_data)
+
+@login_required(login_url='/login')
+def save_edited_meal(request):
+    response_data = {}
+    meal_pk = request.POST.get('pk')
+    meal = Meal.objects.get(pk = meal_pk)
+    name = request.POST.get('name')
+    description = request.POST.get('description')
+    price = request.POST.get('price')
+    image = request.POST.get('meal_image')
+    category = request.POST.get('category')
+    try:
+        meal.name = name
+        meal.description = description
+        meal.price = price
+        meal.image = image
+        meal.category = category
+        meal.save()
+        response_data['status'] = 'success'
+        response_data['message'] = 'Meal edited saved'
     except Exception as e:
         response_data['status'] = 'error'
         response_data['message'] = 'Something went wrong'

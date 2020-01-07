@@ -29,11 +29,10 @@
   }
 </style>
 
+<input type="text" style="display: none;" id="pk" value="{{ meals.pk }}">
+
 <div id="page-vcard" class="content">
-  <p
-    id="account_notification"
-    class="toast toast-top toast-small bg-green-dark "
-  >
+  <p id="success_notification" class="toast toast-top toast-small bg-green-dark ">
     <i class="fa fa-check"></i>
     Se guardaron los cambios
   </p>
@@ -41,58 +40,58 @@
     <i class="fa fa-times"></i>
     Algo salio mal
   </p>
-    <h4 class="uppercase bolder">Editar el Platillo {{ meals.name }}</h4>
+  <h4 class="uppercase bolder">Editar el Platillo "{{ meals.name }}"</h4>
 
-    <p class="bottom-15">
-      Rellena todos los campos para continuar
-    </p>
+  <p class="bottom-15">
+    Rellena todos los campos para continuar
+  </p>
 
-    <div class="input-simple-1 has-icon input-green bottom-30">
-        <strong>Required Field</strong>
-        <em>Nombre</em>
-        <i class="fa fa-user"></i>
-        <input type="text" placeholder="" value="{{ meals.name }}" id="name" autocomplete="off" />
-    </div>
-    <div class="input-simple-1 has-icon input-green bottom-30">
-        <strong>Required Field</strong>
+  <div class="input-simple-1 has-icon input-green bottom-30">
+    <strong>Required Field</strong>
+    <em>Nombre</em>
+    <i class="fa fa-user"></i>
+    <input type="text" placeholder="" value="{{ meals.name }}" id="name" autocomplete="off" />
+  </div>
+  <div class="input-simple-1 has-icon input-green bottom-30">
+    <strong>Required Field</strong>
 
-        <em>Descripcion</em>
+    <em>Descripcion</em>
 
-        <i class="fa fa-user"></i>
-        <input type="text" value="{{ meals.description }}" placeholder="" id="description" autocomplete="off" />
-    </div>
-    <div class="input-simple-1 has-icon input-green bottom-30">
-        <strong>Required Field</strong>
+    <i class="fa fa-user"></i>
+    <input type="text" value="{{ meals.description }}" placeholder="" id="description" autocomplete="off" />
+  </div>
+  <div class="input-simple-1 has-icon input-green bottom-30">
+    <strong>Required Field</strong>
 
-        <em>Precio</em>
+    <em>Precio</em>
 
-        <i class="fa fa-user"></i>
-        <input type="number" placeholder="" value="{{ meals.price }}" id="price" autocomplete="off" />
-    </div>
+    <i class="fa fa-user"></i>
+    <input type="number" placeholder="" value="{{ meals.price }}" id="price" autocomplete="off" />
+  </div>
 
-    <div class="input-simple-1 has-icon input-green bottom-30">
-        <strong>Required Field</strong>
+  <div class="input-simple-1 has-icon input-green bottom-30">
+    <strong>Required Field</strong>
 
-        <em>Categoria</em>
+    <em>Categoria</em>
 
-        <i class="fa fa-user"></i>
-        <input type="text" placeholder="" value="{{ meals.category }}" id="category" autocomplete="off" />
-    </div>
+    <i class="fa fa-user"></i>
+    <input type="text" placeholder="" value="{{ meals.category }}" id="category" autocomplete="off" />
+  </div>
 
-    <div class="profile-gallery cc_cursor">
-<a class="default-link" data-lightbox="gallery-1" href="images/pictures/1t.jpg" alt="img"><img class="preload-image responsive-image polaroid-effect polaroid-effect-small" src="https://images.unsplash.com/photo-1523049673857-eb18f1d7b578?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1868&q=80" data-src="https://images.unsplash.com/photo-1523049673857-eb18f1d7b578?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1868&q=80"></a>
-    </div>
-    <div class="upload-btn-wrapper">
-      <button class="btn">Selecionar Imagen</button>
-      <input type="file" id="meal_image" name="meal_image" />
-    </div>
-    <div class="clear"></div>
-    <a
-      href="#"
-      id="save_meal"
-      class="button bg-green1-dark button-full button-rounded button-xs uppercase ultrabold">
-      Guardar Cambios
-    </a>
+  <div class="profile-gallery cc_cursor">
+    <a class="default-link" data-lightbox="gallery-1" href="images/pictures/1t.jpg" alt="img">
+      <img class="preload-image responsive-image polaroid-effect polaroid-effect-small" id="meal_show"
+        src="{% if meals.image %}/media/{{ meals.image }}{% else %}https://images.unsplash.com/photo-1489069313310-63735a4f3010?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60{% endif %}"
+        data-src="{% if meals.image %}/media/{{ meals.image }}{% else %}https://images.unsplash.com/photo-1489069313310-63735a4f3010?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60{% endif %}"></a>
+  </div>
+  <div class="upload-btn-wrapper">
+    <button class="btn">Selecionar Imagen</button>
+    <input type="file" id="meal_image" value="" name="meal_image" />
+  </div>
+  <div class="clear"></div>
+  <a href="#" id="save_meal" class="button bg-green1-dark button-full button-rounded button-xs uppercase ultrabold">
+    Guardar Cambios
+  </a>
 </div>
 
 <script src="{% static 'js/restaurants/meals/edit_meal.js' %}" charset="utf-8"></script>
