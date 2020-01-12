@@ -7,6 +7,7 @@ from . models import User, Restaurant, Driver, Customer, Meal, Order, OrderDetai
 from django.contrib.auth.decorators import login_required
 # Create your views here.
 
+
 def test_api(request):
     response_data = {}
     response_data['message'] = 'This is a test api'
@@ -35,39 +36,46 @@ def login_view(request):
 def home(request):
     return render(request, 'index.html')
 
-#Templates
+# Templates
 @login_required(login_url='/login/')
 def restaurant_account(request):
     user = request.user
     restaurant = Restaurant.objects.get(user=user)
     context = {
         'restaurant': restaurant,
+        'account_active': 'active'
     }
     return render(request, 'restaurant/account.html', context)
+
 
 @login_required(login_url='/login/')
 def restaurant_meals(request):
     user = request.user
     restaurant = Restaurant.objects.get(user=user)
-    meals = Meal.objects.filter(restaurant = request.user.restaurant).order_by('id')
+    meals = Meal.objects.filter(
+        restaurant=request.user.restaurant).order_by('id')
+    # 'meals_section_opened': 'menu-item-active cc_pointer'
 
     context = {
         'restaurant': restaurant,
-        'meals': meals
+        'meals': meals,
+        'meals_active': 'active'
     }
     return render(request, 'restaurant/meals.html', context)
+
 
 @login_required(login_url='/login/')
 def restaurant_add_view(request):
     return render(request, 'restaurant/meals_add.html')
 
+
 @login_required(login_url='/login/')
 def restaurant_edit_view(request, meal_id):
     response_data = {}
-    meals = Meal.objects.get(pk = meal_id)
-    return render(request, 'restaurant/meals_edit.html', { 'meals': meals })
+    meals = Meal.objects.get(pk=meal_id)
+    return render(request, 'restaurant/meals_edit.html', {'meals': meals})
 
-#Functions
+# Functions
 @login_required(login_url='/login/')
 def update_account(request):
     response_data = {}
@@ -96,11 +104,12 @@ def update_account(request):
         response_data['message'] = 'Something went wrong'
     return JsonResponse(response_data)
 
+
 @login_required(login_url='/login/')
 def restaurant_create_meal(request):
     response_data = {}
     user = request.user
-    restaurant = Restaurant.objects.get(user = user)
+    restaurant = Restaurant.objects.get(user=user)
     name = request.POST.get('name')
     description = request.POST.get('description')
     price = request.POST.get('price')
@@ -108,12 +117,12 @@ def restaurant_create_meal(request):
     category = request.POST.get('category')
     try:
         meal = Meal.objects.create(
-            restaurant = restaurant,
-            name = name,
-            description = description,
-            price = price,
-            category = category,
-            image = image
+            restaurant=restaurant,
+            name=name,
+            description=description,
+            price=price,
+            category=category,
+            image=image
         )
         response_data['status'] = 'success'
         response_data['message'] = 'Meal created'
@@ -122,11 +131,12 @@ def restaurant_create_meal(request):
         response_data['message'] = 'Something went wrong'
     return JsonResponse(response_data)
 
+
 @login_required(login_url='/login')
 def save_edited_meal(request):
     response_data = {}
     meal_pk = request.POST.get('pk')
-    meal = Meal.objects.get(pk = meal_pk)
+    meal = Meal.objects.get(pk=meal_pk)
     name = request.POST.get('name')
     description = request.POST.get('description')
     price = request.POST.get('price')

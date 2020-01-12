@@ -1,5 +1,5 @@
 {% extends 'index.html' %}
- {% load static %}
+{% load static %}
 {% block title %} Cuenta {%endblock%}
 {% block content %}
 
@@ -10,7 +10,7 @@
     display: inline-block;
   }
 
-  .btn {
+  .button {
     border: 2px solid gray;
     color: gray;
     background-color: white;
@@ -29,11 +29,157 @@
   }
 </style>
 
-<div id="page-vcard" class="content">
-  <p
-    id="account_notification"
-    class="toast toast-top toast-small bg-green-dark "
-  >
+<!-- <div class="header pb-8 pt-5 pt-lg-8 d-flex align-items-center"></div> -->
+
+<div class="container-fluid mt--7 pb-8 pt-5 pt-lg-8">
+  <div class="row">
+    <div class="col-xl-4 order-xl-2 mb-5 mb-xl-0">
+      <div class="card card-profile shadow">
+        <div class="row justify-content-center">
+          <div class="col-lg-3 order-lg-2">
+
+          </div>
+        </div>
+        <div class="card-header text-center border-0 pt-8 pt-md-4 pb-0 pb-md-4">
+          <div class="d-flex justify-content-between">
+            <a href="#" class="btn btn-sm btn-info mr-4">Cambiar logo</a>
+            <a href="#" class="btn btn-sm btn-default float-right">Ayuda</a>
+          </div>
+        </div>
+        <div class="card-profile-image navbar-brand pt-0">
+          <img src="/media/{{ restaurant.logo }}" class="rounded-circle">
+        </div>
+        <div class="card-body pt-0 pt-md-4">
+          <!-- <div class="row">
+            <div class="col">
+              <div class="card-profile-stats d-flex justify-content-center mt-md-5">
+                <div>
+                  <span class="heading">22</span>
+                  <span class="description">Friends</span>
+                </div>
+                <div>
+                  <span class="heading">10</span>
+                  <span class="description">Photos</span>
+                </div>
+                <div>
+                  <span class="heading">89</span>
+                  <span class="description">Comments</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="text-center">
+            <h3>
+              Jessica Jones<span class="font-weight-light">, 27</span>
+            </h3>
+            <div class="h5 font-weight-300">
+              <i class="ni location_pin mr-2"></i>Bucharest, Romania
+            </div>
+            <div class="h5 mt-4">
+              <i class="ni business_briefcase-24 mr-2"></i>Solution Manager - Creative Tim Officer
+            </div>
+            <div>
+              <i class="ni education_hat mr-2"></i>University of Computer Science
+            </div>
+            <hr class="my-4">
+            <p>Ryan — the name taken by Melbourne-raised, Brooklyn-based Nick Murphy — writes, performs and records all
+              of his own music.</p>
+            <a href="#">Show more</a>
+          </div> -->
+        </div>
+      </div>
+    </div>
+    <div class="col-xl-8 order-xl-1">
+      <div class="card bg-secondary shadow">
+        <div class="card-header bg-white border-0">
+          <div class="row align-items-center">
+            <div class="col-8">
+              <h3 class="mb-0">Cuenta de {{ request.user.restaurant }}</h3>
+            </div>
+            <div class="col-4 text-right">
+              <a href="#!" class="btn btn-sm btn-primary">Guardar cambios</a>
+            </div>
+          </div>
+        </div>
+        <div class="card-body">
+          <form>
+            <h6 class="heading-small text-muted mb-4">Informacion del restaurante</h6>
+            <div class="pl-lg-4">
+              <div class="row">
+                <div class="col-lg-6">
+                  <div class="form-group focused">
+                    <label class="form-control-label" for="input-username">Nombre de usuario</label>
+                    <input type="text" id="input-username" class="form-control form-control-alternative"
+                      placeholder="Nombre de usuario" value="{{ request.user.username }}"
+                      style="background-image: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAfBJREFUWAntVk1OwkAUZkoDKza4Utm61iP0AqyIDXahN2BjwiHYGU+gizap4QDuegWN7lyCbMSlCQjU7yO0TOlAi6GwgJc0fT/fzPfmzet0crmD7HsFBAvQbrcrw+Gw5fu+AfOYvgylJ4TwCoVCs1ardYTruqfj8fgV5OUMSVVT93VdP9dAzpVvm5wJHZFbg2LQ2pEYOlZ/oiDvwNcsFoseY4PBwMCrhaeCJyKWZU37KOJcYdi27QdhcuuBIb073BvTNL8ln4NeeR6NRi/wxZKQcGurQs5oNhqLshzVTMBewW/LMU3TTNlO0ieTiStjYhUIyi6DAp0xbEdgTt+LE0aCKQw24U4llsCs4ZRJrYopB6RwqnpA1YQ5NGFZ1YQ41Z5S8IQQdP5laEBRJcD4Vj5DEsW2gE6s6g3d/YP/g+BDnT7GNi2qCjTwGd6riBzHaaCEd3Js01vwCPIbmWBRx1nwAN/1ov+/drgFWIlfKpVukyYihtgkXNp4mABK+1GtVr+SBhJDbBIubVw+Cd/TDgKO2DPiN3YUo6y/nDCNEIsqTKH1en2tcwA9FKEItyDi3aIh8Gl1sRrVnSDzNFDJT1bAy5xpOYGn5fP5JuL95ZjMIn1ya7j5dPGfv0A5eAnpZUY3n5jXcoec5J67D9q+VuAPM47D3XaSeL4AAAAASUVORK5CYII=&quot;); background-repeat: no-repeat; background-attachment: scroll; background-size: 16px 18px; background-position: 98% 50%;">
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-control-label" for="input-email">Correo</label>
+                    <input type="email" id="input-email" class="form-control form-control-alternative"
+                      placeholder="jesse@example.com" value="{{ request.user.email }}">
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-6">
+                  <div class="form-group focused">
+                    <label class="form-control-label" for="input-first-name">Nombre</label>
+                    <input type="text" id="input-first-name" class="form-control form-control-alternative"
+                      placeholder="Nombre de restaurante" value="{{ restaurant.name }}">
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                  <div class="form-group focused">
+                    <label class="form-control-label" for="input-last-name">Categoria</label>
+                    <input type="text" id="input-last-name" class="form-control form-control-alternative"
+                      placeholder="Desayunos" value="{{ restaurant.category}}">
+                  </div>
+                </div>
+              </div>
+            </div>
+            <hr class="my-4">
+            <!-- Address -->
+            <h6 class="heading-small text-muted mb-4">Informacion de ubicacion</h6>
+            <div class="pl-lg-4">
+              <div class="row">
+                <div class="col-lg-6">
+                  <div class="form-group focused">
+                    <label class="form-control-label" for="input-first-name">Direccion</label>
+                    <input type="text" id="input-first-name" class="form-control form-control-alternative"
+                      placeholder="Calle #2" value="{{ restaurant.address }}">
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                  <div class="form-group focused">
+                    <label class="form-control-label" for="input-last-name">Ciudad</label>
+                    <input type="text" id="input-last-name" class="form-control form-control-alternative"
+                      placeholder="Tijuana" value="{{ restaurant.city }}">
+                  </div>
+                </div>
+              </div>
+            </div>
+            <hr class="my-4">
+            <!-- Description -->
+            <!-- <h6 class="heading-small text-muted mb-4">About me</h6>
+            <div class="pl-lg-4">
+              <div class="form-group focused">
+                <label>About Me</label>
+                <textarea rows="4" class="form-control form-control-alternative"
+                  placeholder="A few words about you ...">A beautiful Dashboard for Bootstrap 4. It is Free and Open Source.</textarea>
+              </div>
+            </div> -->
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- <div id="page-vcard" class="content">
+  <p id="account_notification" class="toast toast-top toast-small bg-green-dark ">
     <i class="fa fa-check"></i>
     Se guardaron los cambios
   </p>
@@ -44,15 +190,9 @@
 
 
   <div class="vcard-header">
-    <img
-      data-src="/media/{{ restaurant.logo }}"
-      src="/media/{{ restaurant.logo }}"
-      class="preload-image"
-    />
+    <img data-src="/media/{{ restaurant.logo }}" src="/media/{{ restaurant.logo }}" class="preload-image" />
     <h1 class="large-text" id="restaurant_name">{{ restaurant.name }}</h1>
-    <em class="small-text color-gray-dark bottom-10"
-      >{{ restaurant.category }}</em
-    >
+    <em class="small-text color-gray-dark bottom-10">{{ restaurant.category }}</em>
     <div class="upload-btn-wrapper">
       <button class="btn">Cambiar logo</button>
       <input type="file" id="logo" name="logo" />
@@ -63,34 +203,19 @@
   <h1 class="vcard-title color-blue2-dark bold">Numero</h1>
   <div class="vcard-field">
     <strong>Telefono</strong>
-    <input
-      type="number"
-      placeholder=""
-      id="phone"
-      value="{{ restaurant.phone }}"
-    />
+    <input type="number" placeholder="" id="phone" value="{{ restaurant.phone }}" />
     <i class="fa fa-phone"></i>
   </div>
 
   <h1 class="vcard-title color-blue2-dark bold">Ubicacion</h1>
   <div class="vcard-field">
     <strong>Direccion</strong>
-    <input
-      type="text"
-      id="address_account"
-      id="address"
-      value="{{ restaurant.address }}"
-    />
+    <input type="text" id="address_account" id="address" value="{{ restaurant.address }}" />
     <i class="fa fa-map-marker"></i>
   </div>
   <div class="vcard-field">
     <strong>Ciudad</strong>
-    <input
-      type="text"
-      id="city_account"
-      id="city"
-      value="{{ restaurant.city }}"
-    />
+    <input type="text" id="city_account" id="city" value="{{ restaurant.city }}" />
     <i class="fa fa-map-marker"></i>
   </div>
 
@@ -110,13 +235,11 @@
     <input type="text" id="category" value="{{ restaurant.category }}" />
     <i class="fa fa-cutlery"></i>
   </div>
-</div>
-<a
-  href="#"
-  id="save_account"
-  class="button bg-green1-dark button-full button-rounded button-xs uppercase ultrabold">
+</div> -->
+<!-- <a href="#" id="save_account" class="button bg-green1-dark button-full button-rounded button-xs uppercase ultrabold">
   Guardar Cambios
-</a>
-
+</a> -->
+{% endblock %}
+{% block js %}
 <script src="{% static 'js/account/account.js' %}"></script>
 {% endblock %}

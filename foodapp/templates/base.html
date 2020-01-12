@@ -10,7 +10,6 @@
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <title>FoodClub | Iniciar Sesion</title>
     <!-- Don't forget to update PWA version (must be same) in pwa.js & manifest.json -->
-    <link rel="manifest" href="_manifest.json" data-pwa-version="set_by_pwa.js" />
     <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}" />
     <link rel="stylesheet" type="text/css" href="{% static 'fonts/css/all.min.css' %}" />
     <link rel="stylesheet" type="text/css" href="{% static 'css/framework.css' %}" />
@@ -35,13 +34,13 @@
                     class="fas fa-heart color-red-light"></i></a>
         </div>
 
-        <div id="menu-main" data-menu-load="menu-main.html" class="menu menu-sidebar sidebar-left sidebar-light"></div>
-        <div id="menu-contact" data-menu-load="menu-contact.html" class="menu menu-sidebar sidebar-right sidebar-light">
+        <div id="menu-main" data-menu-load="menu-main.html" class="menu menu-sidebar sidebar-left sidebar-light">
+          <div class="menu-header menu-header-left header-light">
+          <a href="#" class="menu-icon close-menu"><i class="fa fa-times color-red-dark"></i></a>
+          <a href="index.html" class="menu-logo cc_pointer">Bars</a>
+          </div>
         </div>
-        <div id="menu-homepages" data-menu-load="menu-submenu-1.html" data-menu-height="450"
-            class="menu menu-box menu-top"></div>
-        <div id="menu-share" data-menu-load="menu-share.html" data-menu-height="200" class="menu menu-box menu-bottom">
-        </div>
+
 
         <div class="page-content header-clear">
             <div style="height:300px">

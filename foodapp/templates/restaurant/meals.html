@@ -1,35 +1,113 @@
 {% extends 'index.html' %}
- {% load static %}
+{% load static %}
 {% block title %} Menú {%endblock%}
 {% block content %}
-<div id="page-vcard" class="content">
-  <h1>Menu</h1>
-<a href="{% url 'restaurant_add_view' %}" class="button button-m shadow-small button-round-small bg-blue2-dark cc_pointer">Agregar Platillo</a>
-<table class="table-borders-light">
-<tbody>
-  <tr>
-<th class="bg-night-dark cc_cursor">Nombre</th>
-<th class="bg-night-dark">Descripcion</th>
-<th class="bg-night-dark">Precio</th>
-<th class="bg-night-dark">Categoria</th>
-<th class="bg-night-dark">Imagen</th>
-<th class="bg-night-dark">Accion</th>
-</tr>
-  {% for meal in meals %}
-  <tr>
-  <td class="bg-night-light">{{ meal.name }}</td>
-  <td class="bg-night-light">{{ meal.description }}</td>
-  <td class="bg-night-light">${{ meal.price }}</td>
-  <td class="bg-night-light">{{ meal.category }}</td>
-  <td class="bg-night-light" >
-    <img src="/media/{{ meal.image }}" style="display: initial !important;" width="50" height="50" alt="Imagen">
-  </td>
-  <td class="bg-night-light">
-    <a href="{% url 'restaurant_edit_view' meal.id %}" class="button button-xs shadow-small button-round-small bg-red1-light">Editar</a>
-  </td>
-  </tr>
-  {% endfor %}
-</tbody>
-</table>
-<div>
+
+<div class="pb-5 pt-5 pt-md-5">
+  <a href="{% url 'restaurant_add_view' %}" class="btn btn-warning cc_pointer">Agregar Platillo</a>
+</div>
+
+<div class=" pb-8 pt-5 pt-md-8">
+  <div class="container-fluid mt--7">
+    <!-- Table -->
+    <div class="row">
+      <div class="col">
+        <div class="card shadow cc_cursor">
+          <div class="card-header border-0">
+            <h3 class="mb-0">Menu</h3>
+          </div>
+          <div class="table-responsive">
+            <table class="table align-items-center table-flush">
+              <thead class="thead-light">
+                <tr>
+                  <th scope="col">Nombre</th>
+                  <th scope="col">Descripcion</th>
+                  <th scope="col">Precio</th>
+                  <th scope="col">Categoria</th>
+                  <th scope="col">Imagen</th>
+                  <th scope="col">Accion</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for meal in meals %}
+                <tr>
+                  <td>{{ meal.name }}</td>
+                  <td>{{ meal.description }}</td>
+                  <td>{{ meal.price }}</td>
+                  <td>{{ meal.category }}</td>
+                  <td>
+                    <img class="rounded-circle" src="/media/{{ meal.image }}" style="display: initial !important;"
+                      width="50" height="50" alt="Imagen">
+
+                  </td>
+                  <td>
+                    <a href="{% url 'restaurant_edit_view' meal.id %}" class="btn btn-icon btn-2 btn-warning">
+                      <span class="btn-inner--icon"><i class="fas fa-edit"></i></span>
+                    </a>
+                  </td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+<!-- <div class="card-shadow">
+    <div class="card-header border-0">
+      <h3 class="mb-0">Card tables</h3>
+    </div>
+    <div class="table-responsive">
+      <div>
+        <table class="table align-items-center table-flush">
+          <thead class="thead-light">
+            <tr>
+              <th scope="col">
+                Nombre
+              </th>
+              <th scope="col">
+                Descripcion
+              </th>
+              <th scope="col">
+                Precio
+              </th>
+              <th scope="col">
+                Categoria
+              </th>
+              <th scope="col">
+                Imagen
+              </th>
+              <th scope="col">
+                Accion
+              </th>
+            </tr>
+          </thead>
+          <tbody class="list">
+            {% for meal in meals %}
+            <tr>
+              <td>{{ meal.name }}</td>
+              <td>{{ meal.description }}</td>
+              <td>{{ meal.price }}</td>
+              <td>{{ meal.category }}</td>
+              <td>
+                <img class="rounded-circle" src="/media/{{ meal.image }}" style="display: initial !important;"
+                  width="50" height="50" alt="Imagen">
+              </td>
+              <td>
+                <a href="{% url 'restaurant_edit_view' meal.id %}" class="btn btn-icon btn-2 btn-warning">
+                  <span class="btn-inner--icon"><i class="fas fa-edit"></i></span>
+                </a>
+              </td>
+              {% endfor %}
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div> -->
+
+
 {% endblock %}
