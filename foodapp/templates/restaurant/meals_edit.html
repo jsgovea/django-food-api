@@ -10,7 +10,16 @@
     display: inline-block;
   }
 
-  .btn {
+  .file {
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+  }
+
+  .button {
     border: 2px solid gray;
     color: gray;
     background-color: white;
@@ -30,69 +39,102 @@
 </style>
 
 <input type="text" style="display: none;" id="pk" value="{{ meals.pk }}">
-
-<div id="page-vcard" class="content">
-  <p id="success_notification" class="toast toast-top toast-small bg-green-dark ">
-    <i class="fa fa-check"></i>
-    Se guardaron los cambios
-  </p>
-  <p id="toast-3" class="toast toast-top toast-small bg-red-dark">
-    <i class="fa fa-times"></i>
-    Algo salio mal
-  </p>
-  <h4 class="uppercase bolder">Editar el Platillo "{{ meals.name }}"</h4>
-
-  <p class="bottom-15">
-    Rellena todos los campos para continuar
-  </p>
-
-  <div class="input-simple-1 has-icon input-green bottom-30">
-    <strong>Required Field</strong>
-    <em>Nombre</em>
-    <i class="fa fa-user"></i>
-    <input type="text" placeholder="" value="{{ meals.name }}" id="name" autocomplete="off" />
-  </div>
-  <div class="input-simple-1 has-icon input-green bottom-30">
-    <strong>Required Field</strong>
-
-    <em>Descripcion</em>
-
-    <i class="fa fa-user"></i>
-    <input type="text" value="{{ meals.description }}" placeholder="" id="description" autocomplete="off" />
-  </div>
-  <div class="input-simple-1 has-icon input-green bottom-30">
-    <strong>Required Field</strong>
-
-    <em>Precio</em>
-
-    <i class="fa fa-user"></i>
-    <input type="number" placeholder="" value="{{ meals.price }}" id="price" autocomplete="off" />
-  </div>
-
-  <div class="input-simple-1 has-icon input-green bottom-30">
-    <strong>Required Field</strong>
-
-    <em>Categoria</em>
-
-    <i class="fa fa-user"></i>
-    <input type="text" placeholder="" value="{{ meals.category }}" id="category" autocomplete="off" />
-  </div>
-
-  <div class="profile-gallery cc_cursor">
-    <a class="default-link" data-lightbox="gallery-1" href="#" alt="img">
-      <img class="preload-image responsive-image polaroid-effect polaroid-effect-small" id="meal_show"
-        src="{% if meals.image %}/media/{{ meals.image }}{% else %}https://images.unsplash.com/photo-1489069313310-63735a4f3010?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60{% endif %}"
-        data-src="{% if meals.image %}/media/{{ meals.image }}{% else %}https://images.unsplash.com/photo-1489069313310-63735a4f3010?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60{% endif %}"></a>
-  </div>
-  <div class="upload-btn-wrapper">
-    <button class="btn">Selecionar Imagen</button>
-    <input type="file" id="meal_image" value="" name="meal_image" />
-  </div>
-  <div class="clear"></div>
-  <a href="#" id="save_meal" class="button bg-green1-dark button-full button-rounded button-xs uppercase ultrabold">
-    Guardar Cambios
-  </a>
+<div class="pb-5 pt-5 pt-md-5">
 </div>
+
+<div class="container-fluid mt--7 pb-8 pt-5 pt-lg-8">
+  <div class="row">
+    <div class="col-xl-4 order-xl-2 mb-5 mb-xl-0">
+      <div class="card card-profile shadow">
+        <div class="row justify-content-center">
+          <div class="col-lg-3 order-lg-2">
+          </div>
+        </div>
+        <div class="card-header text-center border-0 pt-8 pt-md-4 pb-0 pb-md-4">
+          <div class="d-flex justify-content-between">
+            <div class="upload-btn-wrapper">
+              <button class="btn btn-sm btn-info mr-4">Seleccionar imagen</button>
+              <input type="file" class="" id="meal_image" name="meal_image">
+            </div>
+            <!-- <a href="#" class="btn btn-sm btn-info mr-4">Seleccionar imagen</a> -->
+            <a href="#" class="btn btn-sm btn-default float-right">Ayuda</a>
+          </div>
+        </div>
+        <div class="card-body pt-0 pt-md-4">
+          <div class="card-profile-image">
+            <img id="meal_show"
+              src="{% if meals.image %}/media/{{ meals.image }}{% else %}https://images.unsplash.com/photo-1486428128344-5413e434ad35?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80{% endif %}"
+              class="rounded-circle" width="100">
+          </div>
+          <div class="row">
+            <div class="col">
+              <div class="card-profile-stats d-flex justify-content-center mt-md-5">
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+    <div class="col-xl-8 order-xl-1">
+      <div class="card bg-secondary shadow">
+        <div class="card-header bg-white border-0">
+          <div class="row align-items-center">
+            <div class="col-8">
+              <h3 class="mb-0">Editar platillo {{ meals.name }} </h3>
+            </div>
+            <div class="col-4 text-right">
+              <a href="#" id="save_meal" class="btn btn-sm btn-primary">Guardar</a>
+            </div>
+          </div>
+        </div>
+        <div class="card-body">
+          <form>
+            <h6 class="heading-small text-muted mb-4">Informacion del platillo</h6>
+            <div class="pl-lg-4">
+              <div class="row">
+                <div class="col-lg-6">
+                  <div class="form-group focused">
+                    <label class="form-control-label" for="input-username">Nombre</label>
+                    <input type="text" id="name" class="form-control form-control-alternative"
+                      placeholder="Tacos de pescado" value="{{ meals.name }}"
+                      style="background-image: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAfBJREFUWAntVk1OwkAUZkoDKza4Utm61iP0AqyIDXahN2BjwiHYGU+gizap4QDuegWN7lyCbMSlCQjU7yO0TOlAi6GwgJc0fT/fzPfmzet0crmD7HsFBAvQbrcrw+Gw5fu+AfOYvgylJ4TwCoVCs1ardYTruqfj8fgV5OUMSVVT93VdP9dAzpVvm5wJHZFbg2LQ2pEYOlZ/oiDvwNcsFoseY4PBwMCrhaeCJyKWZU37KOJcYdi27QdhcuuBIb073BvTNL8ln4NeeR6NRi/wxZKQcGurQs5oNhqLshzVTMBewW/LMU3TTNlO0ieTiStjYhUIyi6DAp0xbEdgTt+LE0aCKQw24U4llsCs4ZRJrYopB6RwqnpA1YQ5NGFZ1YQ41Z5S8IQQdP5laEBRJcD4Vj5DEsW2gE6s6g3d/YP/g+BDnT7GNi2qCjTwGd6riBzHaaCEd3Js01vwCPIbmWBRx1nwAN/1ov+/drgFWIlfKpVukyYihtgkXNp4mABK+1GtVr+SBhJDbBIubVw+Cd/TDgKO2DPiN3YUo6y/nDCNEIsqTKH1en2tcwA9FKEItyDi3aIh8Gl1sRrVnSDzNFDJT1bAy5xpOYGn5fP5JuL95ZjMIn1ya7j5dPGfv0A5eAnpZUY3n5jXcoec5J67D9q+VuAPM47D3XaSeL4AAAAASUVORK5CYII=&quot;); background-repeat: no-repeat; background-attachment: scroll; background-size: 16px 18px; background-position: 98% 50%;">
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-control-label" for="description">Descripcion</label>
+                    <input type="text" id="description" class="form-control form-control-alternative"
+                      placeholder="Incluye tomate, cebolla..." value="{{ meals.description }}">
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-6">
+                  <div class="form-group focused">
+                    <label class="form-control-label" for="price">Precio</label>
+                    <input type="text" id="price" class="form-control form-control-alternative" placeholder="$100"
+                      value="{{ meals.price }}">
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                  <div class="form-group focused">
+                    <label class="form-control-label" for="category">Categoria</label>
+                    <input type="text" id="category" class="form-control form-control-alternative"
+                      placeholder="Desayunos" value="{{ meals.category }}">
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
 {% endblock %}
 
 {% block js %}

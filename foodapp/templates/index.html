@@ -62,8 +62,8 @@
         </form>
         <!-- Navigation -->
         <ul class="navbar-nav">
-          <li class="nav-item">
-            <a class="nav-link" href="#">
+          <li class="nav-item {{ orders_active }}">
+            <a class="nav-link {{ orders_active }}" href="{% url 'restaurant_order' %}">
               <i class="ni ni-tv-2 text-primary"></i> Ordenes
             </a>
           </li>

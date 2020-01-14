@@ -36,7 +36,7 @@ def login_view(request):
 def home(request):
     return render(request, 'index.html')
 
-# Templates
+# ================================ Views ================================
 @login_required(login_url='/login/')
 def restaurant_account(request):
     user = request.user
@@ -75,7 +75,23 @@ def restaurant_edit_view(request, meal_id):
     meals = Meal.objects.get(pk=meal_id)
     return render(request, 'restaurant/meals_edit.html', {'meals': meals})
 
-# Functions
+
+@login_required(login_url='/login/')
+def restaurant_order(request):
+    if request.method == 'POST':
+        order = Order.objects.get(
+            id=request.POST.get['id'], restaurant=request.user.restaurant)
+        if order.status == Order.Preparando:
+            order.status = Order.Listo
+            order.save()
+    orders = Order.objects.filter(
+        restaurant=request.user.restaurant).order_by('-id')
+    context = {
+        'orders': orders,
+        'orders_active': 'active'
+    }
+    return render(request, 'restaurant/orders.html', context)
+# ================================ Functions ================================
 @login_required(login_url='/login/')
 def update_account(request):
     response_data = {}
@@ -90,7 +106,7 @@ def update_account(request):
     try:
         restaurant = Restaurant.objects.get(user=user)
         restaurant.name = name
-        restaurant.phone = phone
+        # restaurant.phone = phone
         restaurant.address = address
         restaurant.category = category
         restaurant.city = city
@@ -154,4 +170,18 @@ def save_edited_meal(request):
     except Exception as e:
         response_data['status'] = 'error'
         response_data['message'] = 'Something went wrong'
+    return JsonResponse(response_data)
+
+
+def change_order_status(request):
+    response_data = {}
+    if request.method == 'POST':
+        # id = request.POST.get('id')
+        order = Order.objects.get(
+            id=request.POST.get('id'), restaurant=request.user.restaurant)
+        if order.status == Order.Preparando:
+            order.status = Order.Listo
+            order.save()
+    response_data['status'] = 'success'
+    response_data['message'] = 'Order status changed'
     return JsonResponse(response_data)

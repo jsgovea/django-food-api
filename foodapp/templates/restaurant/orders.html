@@ -1,0 +1,74 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block title %} Cuenta {%endblock%}
+{% block content %}
+
+<div class="pb-5 pt-5 pt-md-5">
+</div>
+
+<div class="alert alert-success" id="success-alert" role="alert" hidden>
+    <strong>El estatus se ha cambiado correctamente</strong>
+</div>
+<div class="alert alert-danger" id="error-alert" role="alert" hidden>
+    <strong>Ooops! Algo salio mal</strong>
+</div>
+
+<div class=" pb-8 pt-5 pt-md-8">
+    <div class="container-fluid mt--7">
+        <!-- Table -->
+        <div class="row">
+            <div class="col">
+                <div class="card shadow cc_cursor">
+                    <div class="card-header border-0">
+                        <h3 class="mb-0">Menu</h3>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table align-items-center table-flush">
+                            <thead class="thead-light">
+                                <tr>
+                                    <th scope="col">Id</th>
+                                    <th scope="col">Detalles</th>
+                                    <th scope="col">Cliente</th>
+                                    <th scope="col">Repartidor</th>
+                                    <th scope="col">Total</th>
+                                    <th scope="col">Status</th>
+                                    <th scope="col">Accion</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for order in orders %}
+                                <tr>
+                                    <td>{{ order.id }}</td>
+                                    <td>
+                                        {% for od in  order.order_details.all %}
+                                        {{ od.meal.name }}{{ od.price }} X {{ od.quantity }} = ${{ od.sub_total }}
+                                        {% endfor %}
+                                    </td>
+                                    <td>{{ order.customer }}</td>
+                                    <td>{{ order.driver }}</td>
+                                    <td>{{ order.total }}</td>
+                                    <td>{{ order.get_status_display }}</td>
+                                    <td>
+                                        {% if order.status == 1 %}
+                                        <form method="POST">
+                                            {% csrf_token %}
+                                            <input name="id" value="{{ order.id }}" hidden>
+                                            <button type="button" class="btn id btn-success">Listo</button>
+                                        </form>
+                                        {% endif %}
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+{% endblock %}
+{% block js %}
+<script src="{% static 'js/restaurants/orders/orders.js' %}"></script>
+{% endblock %}

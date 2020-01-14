@@ -25,7 +25,7 @@ class Customer(models.Model):
     address = models.CharField(max_length=100, blank=False)
 
     def __str__(self):
-        return self.user.get_full_name()
+        return str(self.user)
 
 
 class Driver(models.Model):
@@ -52,6 +52,7 @@ class Meal(models.Model):
     def __str__(self):
         return self.name
 
+
 class Order(models.Model):
     Preparando = 1
     Listo = 2
@@ -63,6 +64,7 @@ class Order(models.Model):
         (Entregado, "Entregado")
     )
     customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
+    driver = models.ForeignKey(Driver, on_delete=models.CASCADE)
     restaurant = models.ForeignKey(Restaurant, on_delete=models.CASCADE)
     address = models.CharField(max_length=100)
     total = models.FloatField()
