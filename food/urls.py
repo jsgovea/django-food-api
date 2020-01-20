@@ -1,8 +1,9 @@
 from django.contrib import admin
-from django.urls import path
-from foodapp import views
+from django.urls import path, include
+from foodapp import views, apis
 from django.conf.urls.static import static
 from django.conf import settings
+from customers import urls as customer_urls
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -28,5 +29,12 @@ urlpatterns = [
     path('save_edited_meal/', views.save_edited_meal, name='save_edited_meal'),
     path('change_order_status/', views.change_order_status,
          name='change_order_status'),
+    #     path('customers/', customer_urls.views.index, name='customer_index'),
+    path('customers/', include('customers.urls')),
+
+    path('api/customer/restaurant/', apis.customer_get_restaurant),
+    path('api/customer/meals/<int:restaurant_id>/', apis.customer_get_meals),
+    path('api/customer/order/add', apis.customer_add_order),
+    path('api/customer/order/lastest', apis.customer_get_latest_order),
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
