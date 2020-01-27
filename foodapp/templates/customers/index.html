@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- Material design icons CSS -->
+    <link rel="stylesheet" href="{% static 'css/customers/material-icons.css' %}">
+
+    <!-- Roboto fonts CSS -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet">
+
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="{% static 'css/customers/bootstrap.min.css' %}">
+
+    <!-- Swiper CSS -->
+    <link href="{% static 'css/customers/swiper.min.css' %}" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="{% static 'css/customers/style.css' %}" rel="stylesheet">
+    <title>Customers</title>
+</head>
+
+<body>
+    <div class="sidebar">
+        <div class="text-center">
+            <div class="figure-menu shadow">
+                <figure>
+                    <img src="https://images.unsplash.com/photo-1518020382113-a7e8fc38eac9?ixlib=rb-1.2.1&auto=format&fit=crop&w=960&q=80"
+                        alt="">
+                </figure>
+            </div>
+            <h5 class="mb-1 ">Ammy Jahnson</h5>
+            <p class="text-mute small">Sydney, Australia</p>
+        </div>
+        <br>
+        <div class="row mx-0">
+            <div class="col">
+                <div class="card mb-3 border-0 shadow-sm bg-template-light">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col">
+                                <p class="text-secondary small mb-0">Balance Available</p>
+                                <h6 class="text-dark my-0">$2585.00</h6>
+                            </div>
+                            <div class="col-auto">
+                                <button class="btn btn-default button-rounded-36 shadow"><i
+                                        class="material-icons">add</i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <h5 class="subtitle text-uppercase"><span>Menu</span></h5>
+                <div class="list-group main-menu">
+                    <a href="" class="list-group-item list-group-item-action active">Store</a>
+                    <a href="" class="list-group-item list-group-item-action">Notification <span
+                            class="badge badge-dark text-white">2</span></a>
+                    <a href="" class="list-group-item list-group-item-action">All Products</a>
+                    <a href="" class="list-group-item list-group-item-action">My Order</a>
+                    <a href="" class="list-group-item list-group-item-action">My Profile</a>
+                    <a href="" class="list-group-item list-group-item-action">Pages Controls <span
+                            class="badge badge-light ml-2">Check</span></a>
+                    <a href="" class="list-group-item list-group-item-action">Settings</a>
+                    <a href="" class="list-group-item list-group-item-action mt-4">Logout</a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="wrapper">
+        <div class="header">
+            <div class="row no-gutters">
+                <div class="col-auto">
+                    <button class="btn  btn-link text-dark menu-btn"><img src="{% static 'img/customers/menu.png' %}"
+                            alt=""><span class="new-notification"></span></button>
+                </div>
+                <div class="col text-center"><img src="" alt="" class="header-logo"></div>
+                <!-- <div class="col-auto">
+                    <a href="" class="btn  btn-link text-dark"><i class="material-icons">account_circle</i></a>
+                </div> -->
+            </div>
+        </div>
+        <div class="container">
+            <h1>Index base</h1>
+        </div>
+    </div>
+
+
+    <!-- jquery, popper and bootstrap js -->
+    <script src="{% static 'js/customers/jquery-3.3.1.min.js' %}"></script>
+    <script src="{% static 'js/customers/popper.min.js' %}"></script>
+    <script src="{% static 'js/customers/bootstrap.min.js' %}"></script>
+
+    <!-- swiper js -->
+    <script src="{% static 'js/customers/swiper.min.js' %}"></script>
+
+    <!-- template custom js -->
+    <script src="{% static 'js/customers/main.js' %}"></script>
+
+    <script>
+        $(window).on('load', function () {
+            /* swiper slider carousel */
+            var swiper = new Swiper('.small-slide', {
+                slidesPerView: 'auto',
+                spaceBetween: 0,
+            });
+
+            var swiper = new Swiper('.news-slide', {
+                slidesPerView: 5,
+                spaceBetween: 0,
+                pagination: {
+                    el: '.swiper-pagination',
+                },
+                breakpoints: {
+                    1024: {
+                        slidesPerView: 4,
+                        spaceBetween: 0,
+                    },
+                    768: {
+                        slidesPerView: 3,
+                        spaceBetween: 0,
+                    },
+                    640: {
+                        slidesPerView: 2,
+                        spaceBetween: 0,
+                    },
+                    320: {
+                        slidesPerView: 2,
+                        spaceBetween: 0,
+                    }
+                }
+            });
+
+            /* notification view and hide */
+            setTimeout(function () {
+                $('.notification').addClass('active');
+                setTimeout(function () {
+                    $('.notification').removeClass('active');
+                }, 3500);
+            }, 500);
+            $('.closenotification').on('click', function () {
+                $(this).closest('.notification').removeClass('active')
+            });
+        });
+
+    </script>
+
+</body>
+
+</html>

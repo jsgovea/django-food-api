@@ -6,6 +6,4 @@ from django.contrib.auth.decorators import login_required
 
 
 def index(request):
-    response_data = {}
-    response_data['status'] = 'success'
-    return JsonResponse(response_data)
+    return render(request, 'customers/index.html')

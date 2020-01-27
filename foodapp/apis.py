@@ -1,6 +1,6 @@
 from django.http import JsonResponse
 import json
-from foodapp.models import Restaurant, Meal
+from foodapp.models import Restaurant, Meal, OrderDetail
 from foodapp.serializers import RestaurantSerializer, MealSerializer
 
 
@@ -32,6 +32,26 @@ def customer_add_order(request):
         if not request.POST['address']:
             return JsonResponse({'status': 'error', 'message': 'Address is required'})
         order_details = json.load(request.POST['order_details'])
+        order_total = 0
+        for meal in order_details:
+            order_total += Meal.objects.get(
+                id=meal['meal_id']).price * meal['quantity']
+        if len(order_details) > 0:
+            order = Order.objects.create(
+                customer=customer,
+                restaurant_id=request.POST['restaurant_id'],
+                total=order_details,
+                status=order.Preparando,
+                address=request.POST['address']
+            )
+            for meal in order_details:
+                OrderDetail.objects.create(
+                    order=order,
+                    meal_id=meal['meal_id'],
+                    quantity=meal['quantity'],
+                    subtotal=Meal.objects.get(
+                        id=meal['meal_id']).price * meal['quantity']
+                )
     return JsonResponse({})
 
 

@@ -30,6 +30,8 @@ urlpatterns = [
     path('change_order_status/', views.change_order_status,
          name='change_order_status'),
     #     path('customers/', customer_urls.views.index, name='customer_index'),
+
+    # CUSTOMERS VIEWS
     path('customers/', include('customers.urls')),
 
     path('api/customer/restaurant/', apis.customer_get_restaurant),
