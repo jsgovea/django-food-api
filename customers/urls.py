@@ -4,5 +4,5 @@ from django.conf import settings
 from customers import views
 
 urlpatterns = [
-    path('', views.index, name='index'),
+    path('', views.restaurants_by_city, name='restaurants_by_city'),
 ]
